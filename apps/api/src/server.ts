@@ -1,10 +1,6 @@
-import dotenv from "dotenv";
-dotenv.config();
-
+import { env } from "./config/env";
 import app from "./app";
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`🚀 NR LMS API running on http://localhost:${PORT}`);
+app.listen(Number(env.PORT), () => {
+  console.log(`🚀 NR LMS API running on http://localhost:${env.PORT}`);
 });

@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import authenticationRoutes from "./modules/authentication/routes/authentication.routes";
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/api/v1/auth", authenticationRoutes);
 
 // Health Check Route
 app.get("/health", (req, res) => {
