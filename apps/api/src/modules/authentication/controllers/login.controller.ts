@@ -1,22 +1,26 @@
 import { Request, Response } from "express";
-import { login } from "../services/login.service";
+import { loginSchema } from "../schemas/login.schema";
+import { loginService } from "../services/login.service";
 
 export async function loginController(
     req: Request,
     res: Response
 ) {
     try {
-        const { username, password } = req.body;
+        const data = loginSchema.parse(req.body);
 
-        const result = await login(username, password);
+        const result = await loginService.login(
+            data.login,
+            data.password
+        );
 
         return res.status(200).json({
             success: true,
-            message: "Login Successful",
+            message: "Login successful",
             data: result,
         });
     } catch (error: any) {
-        return res.status(401).json({
+        return res.status(400).json({
             success: false,
             message: error.message,
         });

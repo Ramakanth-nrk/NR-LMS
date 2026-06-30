@@ -4,6 +4,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import authenticationRoutes from "./modules/authentication/routes/authentication.routes";
 
+
 const app = express();
 
 // Middlewares
